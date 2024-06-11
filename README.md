@@ -4,8 +4,8 @@
 **Final Assignment**
 
 ## Authors:
-- **Matan Shemesh** (ID: 318449501)
-- **Ariel Cohen** (ID: 322624750)
+- **Matan Shemesh** 
+- **Ariel Cohen** 
 
 ## Table of Contents:
 - [Part 1: Full Training of QDA Classifier](#part-1-full-training-of-qda-classifier)
@@ -50,32 +50,3 @@ A bar graph was created to visualize accuracy for each classifier in the trainin
 
 ## Conclusions
 The changes made to maximize results were detailed for each classifier, demonstrating significant improvements in most cases. The LDA classifier was chosen as the best for our semantic analysis model, with maximized test series accuracy and reduced overfitting.
-
-## Appendix: Prompts
-### Prompt 1
-```python
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
-from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
-from sklearn.naive_bayes import GaussianNB
-from sklearn.model_selection import cross_validate, StratifiedKFold, ParameterGrid
-
-def read_csv(csv_name):
-    return pd.read_csv(csv_name).values
-
-def run_classification(X, Y, classifier, cv, prints_flag=False):
-    cv_results = cross_validate(classifier, X, Y, cv=cv, scoring='accuracy', return_train_score=True, n_jobs=-1)
-    if prints_flag: 
-        print(f'Using {classifier}:')
-    train_means = cv_results['train_score'].mean() * 100
-    test_means = cv_results['test_score'].mean() * 100
-    if prints_flag:
-        print(f'Average accuracy on train: {train_means:.3f}%')
-        print(f'Average accuracy on test: {test_means:.3f}%\n')
-    return
-
